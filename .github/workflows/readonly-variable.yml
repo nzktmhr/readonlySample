@@ -1,0 +1,22 @@
+name: Readonly Variable Example
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  readonly-variable:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup readonly variable
+        run: |
+          readonly MY_VARIABLE="This is read-only"
+          echo "MY_VARIABLE is: $MY_VARIABLE"
+
+      - name: Attempt to modify readonly variable
+        run: |
+          readonly MY_VARIABLE="This is read-only"
+          MY_VARIABLE="Attempting to change"
+          echo "MY_VARIABLE is: $MY_VARIABLE"
+        shell: bash
